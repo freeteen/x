@@ -1,21 +1,165 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>FreexxxL</title>
-<meta name="generator" content="WYSIWYG Web Builder 18 - https://www.wysiwygwebbuilder.com">
-<link href="Безымянный1.css" rel="stylesheet">
-<link href="index.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>freeteens</title>
+  <meta name="generator" content="WYSIWYG Web Builder 18 - https://www.wysiwygwebbuilder.com">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+    }
+
+    #container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    #takeTest {
+      color: yellow;
+      font-size: 24px;
+      margin: 20px 0;
+    }
+
+    #instructions {
+      color: red;
+      font-size: 20px;
+      margin: 10px 0;
+      display: none;
+    }
+
+    #getOffer {
+      color: white;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+
+    #startButton {
+      background-color: yellow;
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #startButton:hover {
+      background-color: orange;
+    }
+
+    /* Увеличенный текст для мобильной версии */
+    @media (max-width: 600px) {
+      #takeTest {
+        font-size: 24px;
+      }
+
+      #instructions {
+        font-size: 16px;
+      }
+
+      #getOffer {
+        font-size: 20px;
+      }
+
+      #startButton {
+        font-size: 16px;
+      }
+    }
+  </style>
+  <script>
+    // Переводы для Tier 1, 2 и 3 языков
+    const translations = {
+      en: {
+        takeTest: "TAKE A SHORT TEST",
+        instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
+        getOffer: "The video will start automatically on the “Thank You!” page.",
+        startButton: "START TEST"
+      },
+      ru: {
+        takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
+        instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
+        getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
+        startButton: "НАЧАТЬ ТЕСТ"
+      },
+      es: {
+        takeTest: "REALIZA UNA PRUEBA CORTA",
+        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
+        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
+        startButton: "COMENZAR PRUEBA"
+      },
+      // Добавить остальные переводы...
+    };
+
+    // Установка языка
+    function setLanguage() {
+      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
+      const lang = translations[userLang] ? userLang : 'en'; // Если язык неизвестен, использовать английский
+
+      document.getElementById('takeTest').textContent = translations[lang].takeTest;
+      document.getElementById('instructions').textContent = translations[lang].instructions;
+      document.getElementById('getOffer').textContent = translations[lang].getOffer;
+      document.getElementById('startButton').textContent = translations[lang].startButton;
+    }
+
+    // Показать текст после клика
+    function showInstructions() {
+      document.getElementById('instructions').style.display = 'block';
+    }
+
+    // Функция для редиректа по типу устройства
+    function redirectToDeviceLink() {
+      const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
+
+      if (/Android/i.test(navigator.userAgent)) {
+        window.open(androidLink, "_blank");
+      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.open(iosLink, "_blank");
+      } else {
+        window.open(desktopLink, "_blank");
+      }
+    }
+
+    // Инициализация при загрузке страницы
+    window.onload = function () {
+      setLanguage();
+      document.getElementById('Image2').onclick = redirectToDeviceLink;
+      document.getElementById('Image3').onclick = showInstructions;
+      document.getElementById('startButton').onclick = redirectToDeviceLink;
+    };
+  </script>
 </head>
 <body>
-<div id="space"><br></div>
-<div id="container">
-<div id="wb_Image1" style="position:absolute;left:0px;top:0px;width:993px;height:500px;z-index:0;">
-<a href="https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775" target="_blank"><img src="images/xvideo.png" id="Image1" alt="" width="993" height="500"></a></div>
-<div id="wb_Image2" style="position:absolute;left:331px;top:500px;width:332px;height:511px;z-index:1;">
-<a href="https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775" target="_blank"><img src="images/BONGA  IMONET REG.png" id="Image2" alt="" width="332" height="511"></a></div>
-<div id="wb_Image3" style="position:absolute;left:0px;top:1075px;width:993px;height:679px;z-index:2;">
-<a href="https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775" target="_blank"><img src="images/teen.png" id="Image3" alt="" width="993" height="678"></a></div>
-</div>
+  <div id="container">
+    <div id="wb_Text1">
+      <p id="takeTest">TAKE A SHORT TEST</p>
+    </div>
+    <div>
+      <img src="images/test2.png" id="Image2" alt="Test Image">
+    </div>
+    <div>
+      <img src="images/xvideo.png" id="Image3" alt="Video Image">
+    </div>
+    <div>
+      <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
+      <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
+    </div>
+    <button id="startButton">START TEST</button>
+  </div>
 </body>
 </html>
