@@ -61,25 +61,6 @@
       background-color: orange;
     }
 
-    /* Увеличенный текст для мобильной версии */
-    @media (max-width: 600px) {
-      #takeTest {
-        font-size: 24px;
-      }
-
-      #instructions {
-        font-size: 16px;
-      }
-
-      #getOffer {
-        font-size: 20px;
-      }
-
-      #startButton {
-        font-size: 16px;
-      }
-    }
-
     /* Всплывающее окно */
     #popup {
       display: none;
@@ -190,7 +171,22 @@
 
     window.onload = function() {
       applyTranslation();
-    }
+    };
+
+    // Показать всплывающее окно при попытке покинуть страницу
+    window.onbeforeunload = function() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';  // Показать окно
+    };
+
+    // Предотвратить закрытие окна (опционально)
+    window.addEventListener('beforeunload', function(event) {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';  // Показать окно
+      // Останавливаем стандартное поведение браузера
+      event.preventDefault();
+      return '';  // В некоторых браузерах необходимо возвращать пустую строку
+    });
   </script>
 </head>
 <body>
