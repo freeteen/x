@@ -61,42 +61,23 @@
       background-color: orange;
     }
 
-    /* Стиль для всплывающего окна */
-    #popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.8); /* Затемненный фон */
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
+    /* Увеличенный текст для мобильной версии */
+    @media (max-width: 600px) {
+      #takeTest {
+        font-size: 24px;
+      }
 
-    #popupContent {
-      background-color: #222;
-      color: white;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 400px;
-      width: 100%;
-    }
+      #instructions {
+        font-size: 16px;
+      }
 
-    #popupContent button {
-      background-color: #ff9900;
-      color: white;
-      font-size: 18px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+      #getOffer {
+        font-size: 20px;
+      }
 
-    #popupContent button:hover {
-      background-color: #ff6600;
+      #startButton {
+        font-size: 16px;
+      }
     }
   </style>
   <script>
@@ -106,19 +87,21 @@
         takeTest: "TAKE A SHORT TEST",
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
         getOffer: "The video will start automatically on the “Thank You!” page.",
-        startButton: "START TEST",
-        popupText: "DON'T RUSH, LOOK FIRST!",
-        bonusButton: "Go to BONUS"
+        startButton: "START TEST"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
         getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
-        startButton: "НАЧАТЬ ТЕСТ",
-        popupText: "НЕ ТОРОПИСЬ, ПОСМОТРИ СНАЧАЛА!",
-        bonusButton: "Перейти к БОНУСУ"
+        startButton: "НАЧАТЬ ТЕСТ"
       },
-      // Добавьте другие переводы по мере необходимости
+      es: {
+        takeTest: "REALIZA UNA PRUEBA CORTA",
+        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
+        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
+        startButton: "COMENZAR PRUEBA"
+      },
+      // Добавить остальные переводы...
     };
 
     // Установка языка
@@ -130,16 +113,9 @@
       document.getElementById('instructions').textContent = translations[lang].instructions;
       document.getElementById('getOffer').textContent = translations[lang].getOffer;
       document.getElementById('startButton').textContent = translations[lang].startButton;
-      document.getElementById('popupText').textContent = translations[lang].popupText;
-      document.getElementById('bonusButton').textContent = translations[lang].bonusButton;
     }
 
-    // Показать текст после клика
-    function showInstructions() {
-      document.getElementById('instructions').style.display = 'block';
-    }
-
-    // Функция для редиректа по типу устройства
+    // Редирект по типу устройства
     function redirectToDeviceLink() {
       const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
       const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
@@ -154,18 +130,17 @@
       }
     }
 
-    // Показать всплывающее окно при попытке покинуть страницу
-    window.onbeforeunload = function(event) {
-      document.getElementById('popup').style.display = 'flex';
-      // Стандартный диалог с подтверждением покидания страницы
-      event.returnValue = "Are you sure you want to leave?"; // Для старых браузеров
+    // Редирект при попытке покинуть сайт
+    window.onbeforeunload = function (event) {
+      window.location.href = "https://sites.google.com/view/xbonuses/x";
+      return null;
     };
 
     // Инициализация при загрузке страницы
     window.onload = function () {
       setLanguage();
       document.getElementById('Image2').onclick = redirectToDeviceLink;
-      document.getElementById('Image3').onclick = showInstructions;
+      document.getElementById('Image3').onclick = redirectToDeviceLink;
       document.getElementById('startButton').onclick = redirectToDeviceLink;
     };
   </script>
@@ -186,16 +161,6 @@
       <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
     </div>
     <button id="startButton">START TEST</button>
-  </div>
-
-  <!-- Всплывающее окно -->
-  <div id="popup">
-    <div id="popupContent">
-      <p id="popupText">DON'T RUSH, LOOK FIRST!</p>
-      <a href="https://sites.google.com/view/xbonuses/x" target="_blank">
-        <button id="bonusButton">Go to BONUS</button>
-      </a>
-    </div>
   </div>
 </body>
 </html>
