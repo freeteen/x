@@ -61,7 +61,7 @@
       background-color: orange;
     }
 
-    /* Для мобильной версии */
+    /* Увеличенный текст для мобильной версии */
     @media (max-width: 600px) {
       #takeTest {
         font-size: 24px;
@@ -80,38 +80,31 @@
       }
     }
 
-    /* Стиль для всплывающего окна */
+    /* Всплывающее окно */
     #popup {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
       color: white;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 9999;
-    }
-
-    #popupContent {
-      background-color: #222;
       padding: 20px;
       border-radius: 10px;
+      width: 300px;
       text-align: center;
     }
 
     #popupButton {
       background-color: yellow;
       color: black;
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: bold;
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     #popupButton:hover {
@@ -126,173 +119,83 @@
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
         getOffer: "The video will start automatically on the “Thank You!” page.",
         startButton: "START TEST",
-        popupTitle: "DON'T RUSH, WATCH",
-        bonusButton: "BONUS"
+        popupTitle: "DON'T SLEEP, WATCH!",
+        popupButton: "BONUS",
+        bonusLink: "https://sites.google.com/view/xbonuses/x",
+        androidLink: "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}",
+        iosLink: "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}",
+        desktopLink: "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
         getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
         startButton: "НАЧАТЬ ТЕСТ",
-        popupTitle: "НЕ СПИШИ, СМОТРИ",
-        bonusButton: "БОНУС"
+        popupTitle: "НЕ СПИШИ, СМОТРИ!",
+        popupButton: "БОНУС",
+        bonusLink: "https://sites.google.com/view/xbonuses/x",
+        androidLink: "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}",
+        iosLink: "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}",
+        desktopLink: "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}"
       },
-      es: {
-        takeTest: "REALIZA UNA PRUEBA CORTA",
-        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
-        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
-        startButton: "COMENZAR PRUEBA",
-        popupTitle: "NO CORRAS, MIRA",
-        bonusButton: "BONO"
-      },
-      fr: {
-        takeTest: "FAITES UN TEST COURT",
-        instructions: "LA VIDÉO SERA LANCÉE APRÈS LE TEST.",
-        getOffer: "La vidéo commencera automatiquement sur la page “Merci!”.",
-        startButton: "COMMENCER LE TEST",
-        popupTitle: "NE RUSH PAS, REGARDE",
-        bonusButton: "BONUS"
-      },
-      de: {
-        takeTest: "MACHE EINEN KURZEN TEST",
-        instructions: "DAS VIDEO WIRD NACH DEM TEST ABGESPIELT.",
-        getOffer: "Das Video wird auf der Seite „Danke!“ automatisch gestartet.",
-        startButton: "TEST STARTEN",
-        popupTitle: "NICHT EILE, SCHAU",
-        bonusButton: "BONUS"
-      },
-      it: {
-        takeTest: "FAI UN TEST BREVE",
-        instructions: "IL VIDEO PARTIRÀ DOPO IL TEST.",
-        getOffer: "Il video inizierà automaticamente nella pagina 'Grazie!'.",
-        startButton: "INIZIA IL TEST",
-        popupTitle: "NON CORRERE, GUARDA",
-        bonusButton: "BONUS"
-      },
-      pt: {
-        takeTest: "FAÇA UM TESTE CURTO",
-        instructions: "O VÍDEO SERÁ EXIBIDO APÓS O TESTE.",
-        getOffer: "O vídeo começará automaticamente na página de “Obrigado!”.",
-        startButton: "COMEÇAR TESTE",
-        popupTitle: "NÃO CORRA, ASSISTA",
-        bonusButton: "BÔNUS"
-      },
-      nl: {
-        takeTest: "DOEN EEN KORTE TEST",
-        instructions: "DE VIDEO ZAL STARTEN NA DE TEST.",
-        getOffer: "De video begint automatisch op de “Bedankt!” pagina.",
-        startButton: "START TEST",
-        popupTitle: "GEEN HAAST, KIJK",
-        bonusButton: "BONUS"
-      },
-      pl: {
-        takeTest: "ZRÓB KRÓTKI TEST",
-        instructions: "WIDEO ZOSTANIE ODTWORZONE PO TEŚCIE.",
-        getOffer: "Wideo zacznie się automatycznie na stronie “Dziękuję!”.",
-        startButton: "ROZPOCZNIJ TEST",
-        popupTitle: "NIE SPIESZ SIĘ, OBEJRZYJ",
-        bonusButton: "BONUS"
-      },
-      tr: {
-        takeTest: "KISA BİR TEST YAPIN",
-        instructions: "VİDEO TESTTEN SONRA OYNATILACAKTIR.",
-        getOffer: "Video, “Teşekkürler!” sayfasında otomatik olarak başlayacaktır.",
-        startButton: "TESTİ BAŞLAT",
-        popupTitle: "ACELE ETME, İZLE",
-        bonusButton: "BONUS"
-      },
-      ar: {
-        takeTest: "إجراء اختبار قصير",
-        instructions: "سيتم تشغيل الفيديو بعد الاختبار.",
-        getOffer: "سيبدأ الفيديو تلقائيًا في صفحة “شكرًا!”.",
-        startButton: "ابدأ الاختبار",
-        popupTitle: "لا تتسرع، شاهد",
-        bonusButton: "مكافأة"
-      },
-      zh: {
-        takeTest: "进行简短测试",
-        instructions: "测试后将播放视频。",
-        getOffer: "视频将在“感谢”页面自动开始播放。",
-        startButton: "开始测试",
-        popupTitle: "不要着急，看看",
-        bonusButton: "奖金"
-      },
-      ja: {
-        takeTest: "短いテストを受ける",
-        instructions: "テスト後にビデオが再生されます。",
-        getOffer: "ビデオは「ありがとう」ページで自動的に開始されます。",
-        startButton: "テストを開始",
-        popupTitle: "急がずに見て",
-        bonusButton: "ボーナス"
-      },
-      ko: {
-        takeTest: "짧은 테스트 하기",
-        instructions: "테스트 후 비디오가 재생됩니다.",
-        getOffer: "비디오는 '감사합니다!' 페이지에서 자동으로 시작됩니다.",
-        startButton: "테스트 시작",
-        popupTitle: "서두르지 말고 보세요",
-        bonusButton: "보너스"
-      }
+      // Добавьте другие языки по аналогии
     };
 
-    // Установка языка
-    function setLanguage() {
-      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
-      const lang = translations[userLang] ? userLang : 'en'; // Если язык неизвестен, использовать английский
-
-      document.getElementById('takeTest').textContent = translations[lang].takeTest;
-      document.getElementById('instructions').textContent = translations[lang].instructions;
-      document.getElementById('getOffer').textContent = translations[lang].getOffer;
-      document.getElementById('startButton').textContent = translations[lang].startButton;
-      document.getElementById('popupTitle').textContent = translations[lang].popupTitle;
-      document.getElementById('popupButton').textContent = translations[lang].bonusButton;
+    // Функция для получения языка из локали браузера
+    function getLanguage() {
+      const lang = navigator.language || navigator.userLanguage;
+      return lang.split('-')[0];
     }
 
-    // Показать текст после клика
-    function showInstructions() {
-      document.getElementById('instructions').style.display = 'block';
+    // Функция для применения перевода на текущем языке
+    function applyTranslation() {
+      const language = getLanguage();
+      const trans = translations[language] || translations.en;
+
+      document.getElementById('takeTest').innerText = trans.takeTest;
+      document.getElementById('instructions').innerText = trans.instructions;
+      document.getElementById('getOffer').innerText = trans.getOffer;
+      document.getElementById('startButton').innerText = trans.startButton;
+
+      const popup = document.getElementById('popup');
+      popup.querySelector('h2').innerText = trans.popupTitle;
+      popup.querySelector('#popupButton').innerText = trans.popupButton;
+
+      // Добавляем ссылку на кнопку "Bonus"
+      document.getElementById('popupButton').onclick = function() {
+        window.location.href = trans.bonusLink;
+      };
+
+      // Редирект по типу устройства
+      document.getElementById('startButton').onclick = function() {
+        if (/Android/i.test(navigator.userAgent)) {
+          window.open(trans.androidLink, "_blank");
+        } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          window.open(trans.iosLink, "_blank");
+        } else {
+          window.open(trans.desktopLink, "_blank");
+        }
+      };
+
+      document.getElementById('Image2').onclick = function() {
+        if (/Android/i.test(navigator.userAgent)) {
+          window.open(trans.androidLink, "_blank");
+        } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          window.open(trans.iosLink, "_blank");
+        } else {
+          window.open(trans.desktopLink, "_blank");
+        }
+      };
     }
 
-    // Показать всплывающее окно
-    function showPopup() {
-      document.getElementById('popup').style.display = 'flex';
-    }
-
-    // Скрыть всплывающее окно
-    function hidePopup() {
-      document.getElementById('popup').style.display = 'none';
-    }
-
-    // Инициализация при загрузке страницы
-    window.onload = function () {
-      setLanguage();
-      document.getElementById('Image2').onclick = redirectToDeviceLink;
-      document.getElementById('Image3').onclick = showInstructions;
-      document.getElementById('startButton').onclick = redirectToDeviceLink;
-      document.getElementById('popupButton').onclick = hidePopup;
-    };
-
-    // Функция для редиректа по типу устройства
-    function redirectToDeviceLink() {
-      const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
-      const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
-      const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
-
-      if (/Android/i.test(navigator.userAgent)) {
-        window.open(androidLink, "_blank");
-      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        window.open(iosLink, "_blank");
-      } else {
-        window.open(desktopLink, "_blank");
-      }
+    window.onload = function() {
+      applyTranslation();
     }
   </script>
 </head>
 <body>
   <div id="container">
-    <div id="wb_Text1">
-      <p id="takeTest">TAKE A SHORT TEST</p>
-    </div>
+    <div id="takeTest"></div>
     <div>
       <img src="images/test2.png" id="Image2" alt="Test Image">
     </div>
@@ -300,17 +203,14 @@
       <img src="images/xvideo.png" id="Image3" alt="Video Image">
     </div>
     <div>
-      <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
-      <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
+      <p id="instructions"></p>
+      <p id="getOffer"></p>
     </div>
-    <button id="startButton">START TEST</button>
-  </div>
+    <button id="startButton"></button>
 
-  <!-- Всплывающее окно -->
-  <div id="popup">
-    <div id="popupContent">
-      <h2 id="popupTitle">DON'T RUSH, WATCH</h2>
-      <button id="popupButton">BONUS</button>
+    <div id="popup">
+      <h2></h2>
+      <button id="popupButton"></button>
     </div>
   </div>
 </body>
