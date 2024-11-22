@@ -61,57 +61,7 @@
       background-color: orange;
     }
 
-    /* Popup styles */
-    #popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 400px;
-      background-color: white;
-      border: 2px solid #ccc;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-
-    #popup h2 {
-      color: black;
-      font-size: 20px;
-    }
-
-    #popup p {
-      color: black;
-    }
-
-    #popup button {
-      background-color: yellow;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    #popup button:hover {
-      background-color: orange;
-    }
-
-    #overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-    }
-
-    /* Responsive text */
+    /* Для мобильной версии */
     @media (max-width: 600px) {
       #takeTest {
         font-size: 24px;
@@ -129,73 +79,213 @@
         font-size: 16px;
       }
     }
+
+    /* Стиль для всплывающего окна */
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 9999;
+    }
+
+    #popupContent {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #popupButton {
+      background-color: yellow;
+      color: black;
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #popupButton:hover {
+      background-color: orange;
+    }
   </style>
   <script>
-    // Переводы для текста
+    // Переводы для Tier 1, 2 и 3 языков
     const translations = {
       en: {
         takeTest: "TAKE A SHORT TEST",
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
         getOffer: "The video will start automatically on the “Thank You!” page.",
         startButton: "START TEST",
-        popupTitle: "Wait a moment!",
-        popupText: "Are you sure you want to leave? Click the button below to claim your bonus!",
-        popupButton: "Claim Bonus"
+        popupTitle: "DON'T RUSH, WATCH",
+        bonusButton: "BONUS"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
         getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
         startButton: "НАЧАТЬ ТЕСТ",
-        popupTitle: "Подождите!",
-        popupText: "Вы уверены, что хотите уйти? Нажмите кнопку ниже, чтобы получить бонус!",
-        popupButton: "Получить бонус"
+        popupTitle: "НЕ СПИШИ, СМОТРИ",
+        bonusButton: "БОНУС"
       },
+      es: {
+        takeTest: "REALIZA UNA PRUEBA CORTA",
+        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
+        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
+        startButton: "COMENZAR PRUEBA",
+        popupTitle: "NO CORRAS, MIRA",
+        bonusButton: "BONO"
+      },
+      fr: {
+        takeTest: "FAITES UN TEST COURT",
+        instructions: "LA VIDÉO SERA LANCÉE APRÈS LE TEST.",
+        getOffer: "La vidéo commencera automatiquement sur la page “Merci!”.",
+        startButton: "COMMENCER LE TEST",
+        popupTitle: "NE RUSH PAS, REGARDE",
+        bonusButton: "BONUS"
+      },
+      de: {
+        takeTest: "MACHE EINEN KURZEN TEST",
+        instructions: "DAS VIDEO WIRD NACH DEM TEST ABGESPIELT.",
+        getOffer: "Das Video wird auf der Seite „Danke!“ automatisch gestartet.",
+        startButton: "TEST STARTEN",
+        popupTitle: "NICHT EILE, SCHAU",
+        bonusButton: "BONUS"
+      },
+      it: {
+        takeTest: "FAI UN TEST BREVE",
+        instructions: "IL VIDEO PARTIRÀ DOPO IL TEST.",
+        getOffer: "Il video inizierà automaticamente nella pagina 'Grazie!'.",
+        startButton: "INIZIA IL TEST",
+        popupTitle: "NON CORRERE, GUARDA",
+        bonusButton: "BONUS"
+      },
+      pt: {
+        takeTest: "FAÇA UM TESTE CURTO",
+        instructions: "O VÍDEO SERÁ EXIBIDO APÓS O TESTE.",
+        getOffer: "O vídeo começará automaticamente na página de “Obrigado!”.",
+        startButton: "COMEÇAR TESTE",
+        popupTitle: "NÃO CORRA, ASSISTA",
+        bonusButton: "BÔNUS"
+      },
+      nl: {
+        takeTest: "DOEN EEN KORTE TEST",
+        instructions: "DE VIDEO ZAL STARTEN NA DE TEST.",
+        getOffer: "De video begint automatisch op de “Bedankt!” pagina.",
+        startButton: "START TEST",
+        popupTitle: "GEEN HAAST, KIJK",
+        bonusButton: "BONUS"
+      },
+      pl: {
+        takeTest: "ZRÓB KRÓTKI TEST",
+        instructions: "WIDEO ZOSTANIE ODTWORZONE PO TEŚCIE.",
+        getOffer: "Wideo zacznie się automatycznie na stronie “Dziękuję!”.",
+        startButton: "ROZPOCZNIJ TEST",
+        popupTitle: "NIE SPIESZ SIĘ, OBEJRZYJ",
+        bonusButton: "BONUS"
+      },
+      tr: {
+        takeTest: "KISA BİR TEST YAPIN",
+        instructions: "VİDEO TESTTEN SONRA OYNATILACAKTIR.",
+        getOffer: "Video, “Teşekkürler!” sayfasında otomatik olarak başlayacaktır.",
+        startButton: "TESTİ BAŞLAT",
+        popupTitle: "ACELE ETME, İZLE",
+        bonusButton: "BONUS"
+      },
+      ar: {
+        takeTest: "إجراء اختبار قصير",
+        instructions: "سيتم تشغيل الفيديو بعد الاختبار.",
+        getOffer: "سيبدأ الفيديو تلقائيًا في صفحة “شكرًا!”.",
+        startButton: "ابدأ الاختبار",
+        popupTitle: "لا تتسرع، شاهد",
+        bonusButton: "مكافأة"
+      },
+      zh: {
+        takeTest: "进行简短测试",
+        instructions: "测试后将播放视频。",
+        getOffer: "视频将在“感谢”页面自动开始播放。",
+        startButton: "开始测试",
+        popupTitle: "不要着急，看看",
+        bonusButton: "奖金"
+      },
+      ja: {
+        takeTest: "短いテストを受ける",
+        instructions: "テスト後にビデオが再生されます。",
+        getOffer: "ビデオは「ありがとう」ページで自動的に開始されます。",
+        startButton: "テストを開始",
+        popupTitle: "急がずに見て",
+        bonusButton: "ボーナス"
+      },
+      ko: {
+        takeTest: "짧은 테스트 하기",
+        instructions: "테스트 후 비디오가 재생됩니다.",
+        getOffer: "비디오는 '감사합니다!' 페이지에서 자동으로 시작됩니다.",
+        startButton: "테스트 시작",
+        popupTitle: "서두르지 말고 보세요",
+        bonusButton: "보너스"
+      }
     };
 
     // Установка языка
     function setLanguage() {
-      const userLang = navigator.language.slice(0, 2);
-      const lang = translations[userLang] ? userLang : "en";
+      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
+      const lang = translations[userLang] ? userLang : 'en'; // Если язык неизвестен, использовать английский
 
-      document.getElementById("takeTest").textContent = translations[lang].takeTest;
-      document.getElementById("instructions").textContent = translations[lang].instructions;
-      document.getElementById("getOffer").textContent = translations[lang].getOffer;
-      document.getElementById("startButton").textContent = translations[lang].startButton;
-      document.getElementById("popupTitle").textContent = translations[lang].popupTitle;
-      document.getElementById("popupText").textContent = translations[lang].popupText;
-      document.getElementById("popupButton").textContent = translations[lang].popupButton;
+      document.getElementById('takeTest').textContent = translations[lang].takeTest;
+      document.getElementById('instructions').textContent = translations[lang].instructions;
+      document.getElementById('getOffer').textContent = translations[lang].getOffer;
+      document.getElementById('startButton').textContent = translations[lang].startButton;
+      document.getElementById('popupTitle').textContent = translations[lang].popupTitle;
+      document.getElementById('popupButton').textContent = translations[lang].bonusButton;
     }
 
-    // Popup управление
-    const overlay = document.getElementById("overlay");
-    const popup = document.getElementById("popup");
+    // Показать текст после клика
+    function showInstructions() {
+      document.getElementById('instructions').style.display = 'block';
+    }
 
+    // Показать всплывающее окно
     function showPopup() {
-      popup.style.display = "block";
-      overlay.style.display = "block";
+      document.getElementById('popup').style.display = 'flex';
     }
 
+    // Скрыть всплывающее окно
     function hidePopup() {
-      popup.style.display = "none";
-      overlay.style.display = "none";
+      document.getElementById('popup').style.display = 'none';
     }
 
-    // Функция обработки кнопки "Назад"
-    window.history.pushState({}, "");
-    window.onpopstate = function () {
-      showPopup();
-      window.history.pushState({}, ""); // Блокируем уход со страницы
-    };
-
-    // Инициализация
+    // Инициализация при загрузке страницы
     window.onload = function () {
       setLanguage();
-      document.getElementById("popupButton").onclick = function () {
-        window.location.href = "http://adfoc.us/705453107305651";
-      };
-      overlay.onclick = hidePopup;
+      document.getElementById('Image2').onclick = redirectToDeviceLink;
+      document.getElementById('Image3').onclick = showInstructions;
+      document.getElementById('startButton').onclick = redirectToDeviceLink;
+      document.getElementById('popupButton').onclick = hidePopup;
     };
+
+    // Функция для редиректа по типу устройства
+    function redirectToDeviceLink() {
+      const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
+
+      if (/Android/i.test(navigator.userAgent)) {
+        window.open(androidLink, "_blank");
+      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.open(iosLink, "_blank");
+      } else {
+        window.open(desktopLink, "_blank");
+      }
+    }
   </script>
 </head>
 <body>
@@ -216,12 +306,12 @@
     <button id="startButton">START TEST</button>
   </div>
 
-  <!-- Popup -->
-  <div id="overlay"></div>
+  <!-- Всплывающее окно -->
   <div id="popup">
-    <h2 id="popupTitle">Wait a moment!</h2>
-    <p id="popupText">Are you sure you want to leave? Click the button below to claim your bonus!</p>
-    <button id="popupButton">Claim Bonus</button>
+    <div id="popupContent">
+      <h2 id="popupTitle">DON'T RUSH, WATCH</h2>
+      <button id="popupButton">BONUS</button>
+    </div>
   </div>
 </body>
 </html>
