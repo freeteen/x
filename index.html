@@ -115,7 +115,12 @@
       document.getElementById('startButton').textContent = translations[lang].startButton;
     }
 
-    // Редирект по типу устройства
+    // Показать текст после клика
+    function showInstructions() {
+      document.getElementById('instructions').style.display = 'block';
+    }
+
+    // Функция для редиректа по типу устройства
     function redirectToDeviceLink() {
       const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
       const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
@@ -130,17 +135,11 @@
       }
     }
 
-    // Редирект при попытке покинуть сайт
-    window.onbeforeunload = function (event) {
-      window.location.href = "https://sites.google.com/view/xbonuses/x";
-      return null;
-    };
-
     // Инициализация при загрузке страницы
     window.onload = function () {
       setLanguage();
       document.getElementById('Image2').onclick = redirectToDeviceLink;
-      document.getElementById('Image3').onclick = redirectToDeviceLink;
+      document.getElementById('Image3').onclick = showInstructions;
       document.getElementById('startButton').onclick = redirectToDeviceLink;
     };
   </script>
