@@ -61,25 +61,6 @@
       background-color: orange;
     }
 
-    /* Увеличенный текст для мобильной версии */
-    @media (max-width: 600px) {
-      #takeTest {
-        font-size: 24px;
-      }
-
-      #instructions {
-        font-size: 16px;
-      }
-
-      #getOffer {
-        font-size: 20px;
-      }
-
-      #startButton {
-        font-size: 16px;
-      }
-    }
-
     /* Всплывающее окно */
     #popup {
       display: none;
@@ -111,6 +92,25 @@
     #popupButton:hover {
       background-color: orange;
     }
+
+    /* Увеличенный текст для мобильной версии */
+    @media (max-width: 600px) {
+      #takeTest {
+        font-size: 24px;
+      }
+
+      #instructions {
+        font-size: 16px;
+      }
+
+      #getOffer {
+        font-size: 20px;
+      }
+
+      #startButton {
+        font-size: 16px;
+      }
+    }
   </style>
   <script>
     // Переводы для Tier 1, 2 и 3 языков
@@ -122,10 +122,7 @@
         startButton: "START TEST",
         popupTitle: "DON'T SLEEP, WATCH!",
         popupButton: "BONUS",
-        bonusLink: "https://sites.google.com/view/xbonuses/x",
-        androidLink: "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}",
-        iosLink: "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}",
-        desktopLink: "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}"
+        bonusLink: "https://sites.google.com/view/xbonuses/x"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
@@ -134,12 +131,9 @@
         startButton: "НАЧАТЬ ТЕСТ",
         popupTitle: "НЕ СПИШИ, СМОТРИ!",
         popupButton: "БОНУС",
-        bonusLink: "https://sites.google.com/view/xbonuses/x",
-        androidLink: "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}",
-        iosLink: "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}",
-        desktopLink: "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}"
+        bonusLink: "https://sites.google.com/view/xbonuses/x"
       },
-      // Добавьте другие языки по аналогии
+      // Добавить остальные переводы...
     };
 
     // Функция для получения языка из локали браузера
@@ -169,46 +163,54 @@
 
       // Редирект по типу устройства
       document.getElementById('startButton').onclick = function() {
-        if (/Android/i.test(navigator.userAgent)) {
-          window.open(trans.androidLink, "_blank");
-        } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          window.open(trans.iosLink, "_blank");
-        } else {
-          window.open(trans.desktopLink, "_blank");
-        }
+        redirectToDeviceLink();
       };
 
       document.getElementById('Image2').onclick = function() {
-        if (/Android/i.test(navigator.userAgent)) {
-          window.open(trans.androidLink, "_blank");
-        } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          window.open(trans.iosLink, "_blank");
-        } else {
-          window.open(trans.desktopLink, "_blank");
-        }
+        redirectToDeviceLink();
       };
+    }
+
+    // Редирект по типу устройства
+    function redirectToDeviceLink() {
+      const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
+
+      if (/Android/i.test(navigator.userAgent)) {
+        window.open(androidLink, "_blank");
+      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.open(iosLink, "_blank");
+      } else {
+        window.open(desktopLink, "_blank");
+      }
+    }
+
+    // Показываем всплывающее окно при попытке покинуть страницу
+    window.onbeforeunload = function(event) {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';  // Показать окно
+
+      // Останавливаем стандартное поведение (покидание страницы)
+      event.preventDefault();
+      return event.returnValue = "Are you sure you want to leave?";
+    };
+
+    // Скрытие всплывающего окна при нажатии на кнопку "Bonus"
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
     }
 
     window.onload = function() {
       applyTranslation();
     };
-
-    // Всплывающее окно при попытке покинуть страницу
-    window.onbeforeunload = function(event) {
-      // Показываем всплывающее окно
-      const popup = document.getElementById('popup');
-      popup.style.display = 'block';  // Показать окно
-
-      // Останавливаем обычное поведение браузера (покидание страницы)
-      event.preventDefault();
-      return event.returnValue = "Are you sure you want to leave?";
-    };
-
   </script>
 </head>
 <body>
   <div id="container">
-    <div id="takeTest"></div>
+    <div id="wb_Text1">
+      <p id="takeTest">TAKE A SHORT TEST</p>
+    </div>
     <div>
       <img src="images/test2.png" id="Image2" alt="Test Image">
     </div>
@@ -216,11 +218,12 @@
       <img src="images/xvideo.png" id="Image3" alt="Video Image">
     </div>
     <div>
-      <p id="instructions"></p>
-      <p id="getOffer"></p>
+      <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
+      <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
     </div>
-    <button id="startButton"></button>
+    <button id="startButton">START TEST</button>
 
+    <!-- Всплывающее окно -->
     <div id="popup">
       <h2></h2>
       <button id="popupButton"></button>
