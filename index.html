@@ -61,6 +61,25 @@
       background-color: orange;
     }
 
+    /* Увеличенный текст для мобильной версии */
+    @media (max-width: 600px) {
+      #takeTest {
+        font-size: 24px;
+      }
+
+      #instructions {
+        font-size: 16px;
+      }
+
+      #getOffer {
+        font-size: 20px;
+      }
+
+      #startButton {
+        font-size: 16px;
+      }
+    }
+
     /* Всплывающее окно */
     #popup {
       display: none;
@@ -74,6 +93,7 @@
       border-radius: 10px;
       width: 300px;
       text-align: center;
+      z-index: 9999; /* Чтобы окно было поверх всего */
     }
 
     #popupButton {
@@ -173,20 +193,17 @@
       applyTranslation();
     };
 
-    // Показать всплывающее окно при попытке покинуть страницу
-    window.onbeforeunload = function() {
+    // Всплывающее окно при попытке покинуть страницу
+    window.onbeforeunload = function(event) {
+      // Показываем всплывающее окно
       const popup = document.getElementById('popup');
       popup.style.display = 'block';  // Показать окно
+
+      // Останавливаем обычное поведение браузера (покидание страницы)
+      event.preventDefault();
+      return event.returnValue = "Are you sure you want to leave?";
     };
 
-    // Предотвратить закрытие окна (опционально)
-    window.addEventListener('beforeunload', function(event) {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'block';  // Показать окно
-      // Останавливаем стандартное поведение браузера
-      event.preventDefault();
-      return '';  // В некоторых браузерах необходимо возвращать пустую строку
-    });
   </script>
 </head>
 <body>
