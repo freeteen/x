@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -61,28 +61,43 @@
       background-color: orange;
     }
 
-    /* Стили для всплывающего окна */
-    #bonusPopup {
+    /* Popup styles */
+    #popup {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 400px;
       background-color: white;
-      color: black;
       border: 2px solid #ccc;
       padding: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 1000;
     }
 
-    #bonusPopup button {
+    #popup h2 {
+      color: black;
+      font-size: 20px;
+    }
+
+    #popup p {
+      color: black;
+    }
+
+    #popup button {
       background-color: yellow;
       color: black;
-      font-size: 18px;
-      padding: 10px 20px;
       border: none;
+      padding: 10px 20px;
+      font-size: 16px;
       cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #popup button:hover {
+      background-color: orange;
     }
 
     #overlay {
@@ -96,7 +111,7 @@
       z-index: 999;
     }
 
-    /* Адаптация для мобильных устройств */
+    /* Responsive text */
     @media (max-width: 600px) {
       #takeTest {
         font-size: 24px;
@@ -116,68 +131,70 @@
     }
   </style>
   <script>
+    // Переводы для текста
     const translations = {
       en: {
         takeTest: "TAKE A SHORT TEST",
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
         getOffer: "The video will start automatically on the “Thank You!” page.",
         startButton: "START TEST",
-        bonusPopupTitle: "BONUS ALERT!",
-        bonusPopupMessage: "Click the button below to get your bonus.",
-        bonusButton: "GET BONUS"
+        popupTitle: "Wait a moment!",
+        popupText: "Are you sure you want to leave? Click the button below to claim your bonus!",
+        popupButton: "Claim Bonus"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
         getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
         startButton: "НАЧАТЬ ТЕСТ",
-        bonusPopupTitle: "ПОЛУЧИТЕ БОНУС!",
-        bonusPopupMessage: "Нажмите на кнопку ниже, чтобы получить ваш бонус.",
-        bonusButton: "ПОЛУЧИТЬ БОНУС"
+        popupTitle: "Подождите!",
+        popupText: "Вы уверены, что хотите уйти? Нажмите кнопку ниже, чтобы получить бонус!",
+        popupButton: "Получить бонус"
       },
-      es: {
-        takeTest: "REALIZA UNA PRUEBA CORTA",
-        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
-        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
-        startButton: "COMENZAR PRUEBA",
-        bonusPopupTitle: "¡ALERTA DE BONO!",
-        bonusPopupMessage: "Haz clic en el botón a continuación para obtener tu bono.",
-        bonusButton: "OBTENER BONO"
-      }
     };
 
+    // Установка языка
     function setLanguage() {
       const userLang = navigator.language.slice(0, 2);
-      const lang = translations[userLang] ? userLang : 'en';
+      const lang = translations[userLang] ? userLang : "en";
 
-      document.getElementById('takeTest').textContent = translations[lang].takeTest;
-      document.getElementById('instructions').textContent = translations[lang].instructions;
-      document.getElementById('getOffer').textContent = translations[lang].getOffer;
-      document.getElementById('startButton').textContent = translations[lang].startButton;
-
-      // Всплывающее окно
-      document.getElementById('bonusTitle').textContent = translations[lang].bonusPopupTitle;
-      document.getElementById('bonusMessage').textContent = translations[lang].bonusPopupMessage;
-      document.getElementById('bonusButton').textContent = translations[lang].bonusButton;
+      document.getElementById("takeTest").textContent = translations[lang].takeTest;
+      document.getElementById("instructions").textContent = translations[lang].instructions;
+      document.getElementById("getOffer").textContent = translations[lang].getOffer;
+      document.getElementById("startButton").textContent = translations[lang].startButton;
+      document.getElementById("popupTitle").textContent = translations[lang].popupTitle;
+      document.getElementById("popupText").textContent = translations[lang].popupText;
+      document.getElementById("popupButton").textContent = translations[lang].popupButton;
     }
 
-    function showBonusPopup() {
-      document.getElementById('bonusPopup').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
+    // Popup управление
+    const overlay = document.getElementById("overlay");
+    const popup = document.getElementById("popup");
+
+    function showPopup() {
+      popup.style.display = "block";
+      overlay.style.display = "block";
     }
 
+    function hidePopup() {
+      popup.style.display = "none";
+      overlay.style.display = "none";
+    }
+
+    // Функция обработки кнопки "Назад"
+    window.history.pushState({}, "");
+    window.onpopstate = function () {
+      showPopup();
+      window.history.pushState({}, ""); // Блокируем уход со страницы
+    };
+
+    // Инициализация
     window.onload = function () {
       setLanguage();
-
-      window.onbeforeunload = function (event) {
-        showBonusPopup();
-        event.preventDefault();
-        return '';
+      document.getElementById("popupButton").onclick = function () {
+        window.location.href = "http://adfoc.us/705453107305651";
       };
-
-      document.getElementById('bonusButton').onclick = function () {
-        window.location.href = 'http://adfoc.us/705453107305651';
-      };
+      overlay.onclick = hidePopup;
     };
   </script>
 </head>
@@ -186,18 +203,25 @@
     <div id="wb_Text1">
       <p id="takeTest">TAKE A SHORT TEST</p>
     </div>
-    <img src="images/test2.png" id="Image2" alt="Test Image">
-    <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
-    <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
+    <div>
+      <img src="images/test2.png" id="Image2" alt="Test Image">
+    </div>
+    <div>
+      <img src="images/xvideo.png" id="Image3" alt="Video Image">
+    </div>
+    <div>
+      <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
+      <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
+    </div>
     <button id="startButton">START TEST</button>
   </div>
 
-  <!-- Всплывающее окно -->
+  <!-- Popup -->
   <div id="overlay"></div>
-  <div id="bonusPopup">
-    <h2 id="bonusTitle">BONUS ALERT!</h2>
-    <p id="bonusMessage">Click the button below to get your bonus.</p>
-    <button id="bonusButton">GET BONUS</button>
+  <div id="popup">
+    <h2 id="popupTitle">Wait a moment!</h2>
+    <p id="popupText">Are you sure you want to leave? Click the button below to claim your bonus!</p>
+    <button id="popupButton">Claim Bonus</button>
   </div>
 </body>
 </html>
