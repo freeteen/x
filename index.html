@@ -61,55 +61,42 @@
       background-color: orange;
     }
 
-    /* Всплывающее окно */
+    /* Стиль для всплывающего окна */
     #popup {
       display: none;
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-      text-align: center;
-      z-index: 9999; /* Чтобы окно было поверх всего */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8); /* Затемненный фон */
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
     }
 
-    #popupButton {
-      background-color: yellow;
-      color: black;
+    #popupContent {
+      background-color: #222;
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    #popupContent button {
+      background-color: #ff9900;
+      color: white;
       font-size: 18px;
-      font-weight: bold;
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-top: 10px;
     }
 
-    #popupButton:hover {
-      background-color: orange;
-    }
-
-    /* Увеличенный текст для мобильной версии */
-    @media (max-width: 600px) {
-      #takeTest {
-        font-size: 24px;
-      }
-
-      #instructions {
-        font-size: 16px;
-      }
-
-      #getOffer {
-        font-size: 20px;
-      }
-
-      #startButton {
-        font-size: 16px;
-      }
+    #popupContent button:hover {
+      background-color: #ff6600;
     }
   </style>
   <script>
@@ -120,58 +107,39 @@
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
         getOffer: "The video will start automatically on the “Thank You!” page.",
         startButton: "START TEST",
-        popupTitle: "DON'T SLEEP, WATCH!",
-        popupButton: "BONUS",
-        bonusLink: "https://sites.google.com/view/xbonuses/x"
+        popupText: "DON'T RUSH, LOOK FIRST!",
+        bonusButton: "Go to BONUS"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
         getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
         startButton: "НАЧАТЬ ТЕСТ",
-        popupTitle: "НЕ СПИШИ, СМОТРИ!",
-        popupButton: "БОНУС",
-        bonusLink: "https://sites.google.com/view/xbonuses/x"
+        popupText: "НЕ ТОРОПИСЬ, ПОСМОТРИ СНАЧАЛА!",
+        bonusButton: "Перейти к БОНУСУ"
       },
-      // Добавить остальные переводы...
+      // Добавьте другие переводы по мере необходимости
     };
 
-    // Функция для получения языка из локали браузера
-    function getLanguage() {
-      const lang = navigator.language || navigator.userLanguage;
-      return lang.split('-')[0];
+    // Установка языка
+    function setLanguage() {
+      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
+      const lang = translations[userLang] ? userLang : 'en'; // Если язык неизвестен, использовать английский
+
+      document.getElementById('takeTest').textContent = translations[lang].takeTest;
+      document.getElementById('instructions').textContent = translations[lang].instructions;
+      document.getElementById('getOffer').textContent = translations[lang].getOffer;
+      document.getElementById('startButton').textContent = translations[lang].startButton;
+      document.getElementById('popupText').textContent = translations[lang].popupText;
+      document.getElementById('bonusButton').textContent = translations[lang].bonusButton;
     }
 
-    // Функция для применения перевода на текущем языке
-    function applyTranslation() {
-      const language = getLanguage();
-      const trans = translations[language] || translations.en;
-
-      document.getElementById('takeTest').innerText = trans.takeTest;
-      document.getElementById('instructions').innerText = trans.instructions;
-      document.getElementById('getOffer').innerText = trans.getOffer;
-      document.getElementById('startButton').innerText = trans.startButton;
-
-      const popup = document.getElementById('popup');
-      popup.querySelector('h2').innerText = trans.popupTitle;
-      popup.querySelector('#popupButton').innerText = trans.popupButton;
-
-      // Добавляем ссылку на кнопку "Bonus"
-      document.getElementById('popupButton').onclick = function() {
-        window.location.href = trans.bonusLink;
-      };
-
-      // Редирект по типу устройства
-      document.getElementById('startButton').onclick = function() {
-        redirectToDeviceLink();
-      };
-
-      document.getElementById('Image2').onclick = function() {
-        redirectToDeviceLink();
-      };
+    // Показать текст после клика
+    function showInstructions() {
+      document.getElementById('instructions').style.display = 'block';
     }
 
-    // Редирект по типу устройства
+    // Функция для редиректа по типу устройства
     function redirectToDeviceLink() {
       const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
       const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
@@ -186,23 +154,19 @@
       }
     }
 
-    // Показываем всплывающее окно при попытке покинуть страницу
+    // Показать всплывающее окно при попытке покинуть страницу
     window.onbeforeunload = function(event) {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'block';  // Показать окно
-
-      // Останавливаем стандартное поведение (покидание страницы)
-      event.preventDefault();
-      return event.returnValue = "Are you sure you want to leave?";
+      document.getElementById('popup').style.display = 'flex';
+      // Стандартный диалог с подтверждением покидания страницы
+      event.returnValue = "Are you sure you want to leave?"; // Для старых браузеров
     };
 
-    // Скрытие всплывающего окна при нажатии на кнопку "Bonus"
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-    }
-
-    window.onload = function() {
-      applyTranslation();
+    // Инициализация при загрузке страницы
+    window.onload = function () {
+      setLanguage();
+      document.getElementById('Image2').onclick = redirectToDeviceLink;
+      document.getElementById('Image3').onclick = showInstructions;
+      document.getElementById('startButton').onclick = redirectToDeviceLink;
     };
   </script>
 </head>
@@ -222,11 +186,15 @@
       <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
     </div>
     <button id="startButton">START TEST</button>
+  </div>
 
-    <!-- Всплывающее окно -->
-    <div id="popup">
-      <h2></h2>
-      <button id="popupButton"></button>
+  <!-- Всплывающее окно -->
+  <div id="popup">
+    <div id="popupContent">
+      <p id="popupText">DON'T RUSH, LOOK FIRST!</p>
+      <a href="https://sites.google.com/view/xbonuses/x" target="_blank">
+        <button id="bonusButton">Go to BONUS</button>
+      </a>
     </div>
   </div>
 </body>
