@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -61,7 +61,42 @@
       background-color: orange;
     }
 
-    /* Увеличенный текст для мобильной версии */
+    /* Стили для всплывающего окна */
+    #bonusPopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      color: black;
+      border: 2px solid #ccc;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    #bonusPopup button {
+      background-color: yellow;
+      color: black;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    /* Адаптация для мобильных устройств */
     @media (max-width: 600px) {
       #takeTest {
         font-size: 24px;
@@ -81,66 +116,68 @@
     }
   </style>
   <script>
-    // Переводы для Tier 1, 2 и 3 языков
     const translations = {
       en: {
         takeTest: "TAKE A SHORT TEST",
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
         getOffer: "The video will start automatically on the “Thank You!” page.",
-        startButton: "START TEST"
+        startButton: "START TEST",
+        bonusPopupTitle: "BONUS ALERT!",
+        bonusPopupMessage: "Click the button below to get your bonus.",
+        bonusButton: "GET BONUS"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
         getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
-        startButton: "НАЧАТЬ ТЕСТ"
+        startButton: "НАЧАТЬ ТЕСТ",
+        bonusPopupTitle: "ПОЛУЧИТЕ БОНУС!",
+        bonusPopupMessage: "Нажмите на кнопку ниже, чтобы получить ваш бонус.",
+        bonusButton: "ПОЛУЧИТЬ БОНУС"
       },
       es: {
         takeTest: "REALIZA UNA PRUEBA CORTA",
         instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
         getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
-        startButton: "COMENZAR PRUEBA"
-      },
-      // Добавить остальные переводы...
+        startButton: "COMENZAR PRUEBA",
+        bonusPopupTitle: "¡ALERTA DE BONO!",
+        bonusPopupMessage: "Haz clic en el botón a continuación para obtener tu bono.",
+        bonusButton: "OBTENER BONO"
+      }
     };
 
-    // Установка языка
     function setLanguage() {
-      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
-      const lang = translations[userLang] ? userLang : 'en'; // Если язык неизвестен, использовать английский
+      const userLang = navigator.language.slice(0, 2);
+      const lang = translations[userLang] ? userLang : 'en';
 
       document.getElementById('takeTest').textContent = translations[lang].takeTest;
       document.getElementById('instructions').textContent = translations[lang].instructions;
       document.getElementById('getOffer').textContent = translations[lang].getOffer;
       document.getElementById('startButton').textContent = translations[lang].startButton;
+
+      // Всплывающее окно
+      document.getElementById('bonusTitle').textContent = translations[lang].bonusPopupTitle;
+      document.getElementById('bonusMessage').textContent = translations[lang].bonusPopupMessage;
+      document.getElementById('bonusButton').textContent = translations[lang].bonusButton;
     }
 
-    // Показать текст после клика
-    function showInstructions() {
-      document.getElementById('instructions').style.display = 'block';
+    function showBonusPopup() {
+      document.getElementById('bonusPopup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
     }
 
-    // Функция для редиректа по типу устройства
-    function redirectToDeviceLink() {
-      const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
-      const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
-      const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
-
-      if (/Android/i.test(navigator.userAgent)) {
-        window.open(androidLink, "_blank");
-      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        window.open(iosLink, "_blank");
-      } else {
-        window.open(desktopLink, "_blank");
-      }
-    }
-
-    // Инициализация при загрузке страницы
     window.onload = function () {
       setLanguage();
-      document.getElementById('Image2').onclick = redirectToDeviceLink;
-      document.getElementById('Image3').onclick = showInstructions;
-      document.getElementById('startButton').onclick = redirectToDeviceLink;
+
+      window.onbeforeunload = function (event) {
+        showBonusPopup();
+        event.preventDefault();
+        return '';
+      };
+
+      document.getElementById('bonusButton').onclick = function () {
+        window.location.href = 'http://adfoc.us/705453107305651';
+      };
     };
   </script>
 </head>
@@ -149,17 +186,18 @@
     <div id="wb_Text1">
       <p id="takeTest">TAKE A SHORT TEST</p>
     </div>
-    <div>
-      <img src="images/test2.png" id="Image2" alt="Test Image">
-    </div>
-    <div>
-      <img src="images/xvideo.png" id="Image3" alt="Video Image">
-    </div>
-    <div>
-      <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
-      <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
-    </div>
+    <img src="images/test2.png" id="Image2" alt="Test Image">
+    <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
+    <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
     <button id="startButton">START TEST</button>
+  </div>
+
+  <!-- Всплывающее окно -->
+  <div id="overlay"></div>
+  <div id="bonusPopup">
+    <h2 id="bonusTitle">BONUS ALERT!</h2>
+    <p id="bonusMessage">Click the button below to get your bonus.</p>
+    <button id="bonusButton">GET BONUS</button>
   </div>
 </body>
 </html>
