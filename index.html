@@ -22,22 +22,29 @@
 
     #takeTest {
       color: yellow;
-      font-size: 26px; /* Увеличен размер шрифта */
-      margin: 18px 0;
+      font-size: 30px;
+      margin: 20px 0;
     }
 
     #instructions {
       color: red;
-      font-size: 25px; /* Увеличен размер шрифта */
+      font-size: 25px;
       margin: 10px 0;
       display: none;
     }
 
     #getOffer {
       color: yellow;
-      font-size: 22px; /* Увеличен размер шрифта */
+      font-size: 22px;
       margin: 20px 0;
       font-weight: bold;
+    }
+
+    #justClick {
+      color: yellow;
+      font-size: 22px;
+      margin-top: 10px;
+      font-weight: normal;
     }
 
     img {
@@ -49,7 +56,7 @@
     #startButton {
       background-color: yellow;
       color: black;
-      font-size: 24px; /* Увеличен размер шрифта */
+      font-size: 24px;
       font-weight: bold;
       padding: 12px 25px;
       border: none;
@@ -62,17 +69,16 @@
       background-color: orange;
     }
 
-    /* Увеличенный текст для мобильной версии */
     @media (max-width: 600px) {
       #takeTest {
-        font-size: 24px;
+        font-size: 30px;
       }
 
       #instructions {
         font-size: 20px;
       }
 
-      #getOffer {
+      #getOffer, #justClick {
         font-size: 24px;
       }
 
@@ -82,101 +88,109 @@
     }
   </style>
   <script>
-    // Переводы для различных языков
     const translations = {
       en: {
         takeTest: "TAKE A SHORT TEST",
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
-        getOffer: "The video will start automatically on the “Thank You!” page, just click GET OFFER.",
+        getOffer: "The video will start automatically on the “Thank You!” page.",
+        justClick: "Just click GET OFFER.",
         startButton: "START TEST"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
-        getOffer: "Видео начнётся автоматически на странице «Спасибо!», просто нажмите ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ.",
+        getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
+        justClick: "Просто нажмите ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ.",
         startButton: "НАЧНАТЬ ТЕСТ"
       },
       es: {
         takeTest: "REALIZA UNA PRUEBA CORTA",
         instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
-        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”, just click OBTENER OFERTA.",
+        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
+        justClick: "Solo haz clic en OBTENER OFERTA.",
         startButton: "COMENZAR PRUEBA"
       },
       fr: {
         takeTest: "FAITES UN TEST COURT",
         instructions: "LA VIDÉO SERA LANCÉE APRÈS LE TEST.",
-        getOffer: "La vidéo démarrera automatiquement sur la page « Merci ! », just click OBTENIR L'OFFRE.",
+        getOffer: "La vidéo démarrera automatiquement sur la page « Merci ! ».",
+        justClick: "Il suffit de cliquer sur OBTENIR L'OFFRE.",
         startButton: "DÉMARRER LE TEST"
       },
       de: {
         takeTest: "MACHEN SIE EINEN KURZEN TEST",
         instructions: "DAS VIDEO WIRD NACH DEM TEST ABGESPIELT.",
-        getOffer: "Das Video startet automatisch auf der Seite „Danke!“, just click ANGEBOT ABHOLEN.",
+        getOffer: "Das Video startet automatisch auf der Seite „Danke!“.",
+        justClick: "Klicken Sie einfach auf ANGEBOT ABHOLEN.",
         startButton: "TEST STARTEN"
       },
       it: {
         takeTest: "FAI UN TEST BREVE",
         instructions: "IL VIDEO VERRÀ RIPRODOTTO DOPO IL TEST.",
-        getOffer: "Il video partirà automaticamente sulla pagina “Grazie!”, just click OTTIENI L'OFFERTA.",
+        getOffer: "Il video partirà automaticamente sulla pagina “Grazie!”.",
+        justClick: "Basta fare clic su OTTIENI L'OFFERTA.",
         startButton: "INIZIA IL TEST"
       },
       pt: {
         takeTest: "FAÇA UM TESTE RÁPIDO",
         instructions: "O VÍDEO SERÁ EXIBIDO APÓS O TESTE.",
-        getOffer: "O vídeo começará automaticamente na página “Obrigado!”, just click OBTER OFERTA.",
+        getOffer: "O vídeo começará automaticamente na página “Obrigado!”.",
+        justClick: "Basta clicar em OBTER OFERTA.",
         startButton: "INICIAR TESTE"
       },
       tr: {
         takeTest: "KISA BIR TEST YAPIN",
         instructions: "VİDEO TESTTEN SONRA OYNATILACAKTIR.",
-        getOffer: "Video, “Teşekkürler!” sayfasında otomatik olarak başlayacak, just click TEKLİFİ AL.",
+        getOffer: "Video, “Teşekkürler!” sayfasında otomatik olarak başlayacak.",
+        justClick: "Sadece TEKLİFİ AL'a tıklayın.",
         startButton: "TESTİ BAŞLAT"
       },
       ar: {
         takeTest: "أخذ اختبار قصير",
         instructions: "سيتم تشغيل الفيديو بعد الاختبار.",
-        getOffer: "سيبدأ الفيديو تلقائيًا على صفحة \"شكرًا!\"، just click احصل على العرض.",
+        getOffer: "سيبدأ الفيديو تلقائيًا على صفحة \"شكرًا!\".",
+        justClick: "فقط اضغط على احصل على العرض.",
         startButton: "ابدأ الاختبار"
       },
       ja: {
         takeTest: "短いテストを受ける",
         instructions: "テスト後にビデオが再生されます。",
-        getOffer: "ビデオは「ありがとう！」ページで自動的に再生されます。just click GET OFFER。",
+        getOffer: "ビデオは「ありがとう！」ページで自動的に再生されます。",
+        justClick: "GET OFFERをクリックしてください。",
         startButton: "テストを開始"
       },
       ko: {
         takeTest: "짧은 테스트를 진행하세요",
         instructions: "테스트 후에 비디오가 재생됩니다.",
-        getOffer: "비디오는 “감사합니다!” 페이지에서 자동으로 시작됩니다. just click GET OFFER.",
+        getOffer: "비디오는 “감사합니다!” 페이지에서 자동으로 시작됩니다.",
+        justClick: "단지 GET OFFER를 클릭하세요.",
         startButton: "테스트 시작"
       },
       zh: {
         takeTest: "进行短小测试",
         instructions: "测试后视频将播放。",
-        getOffer: "视频将在“谢谢！”页面自动开始，just click GET OFFER。",
+        getOffer: "视频将在“谢谢！”页面自动开始。",
+        justClick: "只需点击GET OFFER。",
         startButton: "开始测试"
       }
     };
 
-    // Установка языка
     function setLanguage() {
-      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
-      const lang = translations[userLang] ? userLang : 'en'; // Если язык не найден, используем английский
+      const userLang = navigator.language.slice(0, 2);
+      const lang = translations[userLang] ? userLang : 'en';
 
-      // Установка переведенных значений для текста и кнопок
       document.getElementById('takeTest').textContent = translations[lang].takeTest;
       document.getElementById('instructions').textContent = translations[lang].instructions;
       document.getElementById('getOffer').textContent = translations[lang].getOffer;
+      document.getElementById('justClick').textContent = translations[lang].justClick;
       document.getElementById('startButton').textContent = translations[lang].startButton;
     }
 
-    // Функция для показа текста инструкций
     function showInstructions() {
       const instructionsElement = document.getElementById('instructions');
-      instructionsElement.style.display = 'block'; // Показываем текст
+      instructionsElement.style.display = 'block';
     }
 
-    // Функция для редиректа по типу устройства
     function redirectToDeviceLink() {
       const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
       const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
@@ -191,21 +205,19 @@
       }
     }
 
-    // Обработчик клика для изображения 3 (всплывающий текст)
     function handleImage3Click() {
-      showInstructions(); // Показываем инструкции при клике на Image3
+      showInstructions();
     }
 
-    // Обработчик клика для изображения 2 (редирект)
     function handleImage2Click() {
-      redirectToDeviceLink(); // Редирект при клике на Image2
+      redirectToDeviceLink();
     }
 
     window.onload = function() {
       setLanguage();
-      document.getElementById('Image3').onclick = handleImage3Click; // Клик на изображение 3 для показа текста
-      document.getElementById('Image2').onclick = handleImage2Click; // Клик на изображение 2 для редиректа
-      document.getElementById('startButton').onclick = redirectToDeviceLink; // Клик на кнопку для редиректа
+      document.getElementById('Image3').onclick = handleImage3Click;
+      document.getElementById('Image2').onclick = handleImage2Click;
+      document.getElementById('startButton').onclick = redirectToDeviceLink;
     };
   </script>
 </head>
@@ -224,7 +236,10 @@
       <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
     </div>
     <div>
-      <p id="getOffer">The video will start automatically on the “Thank You!” page, just click GET OFFER.</p>
+      <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
+    </div>
+    <div>
+      <p id="justClick">Just click GET OFFER.</p>
     </div>
     <div>
       <button id="startButton">START TEST</button>
