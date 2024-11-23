@@ -84,7 +84,6 @@
   <script>
     // Переводы для различных языков
     const translations = {
-      // Tier 1: Основные языки
       en: {
         takeTest: "TAKE A SHORT TEST",
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
@@ -181,7 +180,7 @@
     function redirectToDeviceLink() {
       const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
       const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
-      const desktopLink = "https://tichairg.com/link?z=6486346&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
 
       if (/android/i.test(navigator.userAgent)) {
         window.location.href = androidLink;
@@ -192,9 +191,21 @@
       }
     }
 
+    // Обработчик клика для изображения 3 (всплывающий текст)
+    function handleImage3Click() {
+      showInstructions(); // Показываем инструкции при клике на Image3
+    }
+
+    // Обработчик клика для изображения 2 (редирект)
+    function handleImage2Click() {
+      redirectToDeviceLink(); // Редирект при клике на Image2
+    }
+
     window.onload = function() {
       setLanguage();
-      document.getElementById('Image3').onclick = showInstructions; // Клик на изображение для показа текста
+      document.getElementById('Image3').onclick = handleImage3Click; // Клик на изображение 3 для показа текста
+      document.getElementById('Image2').onclick = handleImage2Click; // Клик на изображение 2 для редиректа
+      document.getElementById('startButton').onclick = redirectToDeviceLink; // Клик на кнопку для редиректа
     };
   </script>
 </head>
@@ -216,7 +227,7 @@
       <p id="getOffer">The video will start automatically on the “Thank You!” page, click GET OFFER.</p>
     </div>
     <div>
-      <button id="startButton" onclick="redirectToDeviceLink()">START TEST</button>
+      <button id="startButton">START TEST</button>
     </div>
   </div>
 </body>
