@@ -35,7 +35,7 @@
 
     #getOffer {
       color: yellow;
-      font-size: 18px; /* Уменьшенный размер шрифта */
+      font-size: 18px;
       margin: 20px 0;
       font-weight: bold;
     }
@@ -69,6 +69,7 @@
       background-color: orange;
     }
 
+    /* Для мобильных устройств */
     @media (max-width: 600px) {
       #takeTest {
         font-size: 30px;
@@ -78,8 +79,12 @@
         font-size: 20px;
       }
 
-      #getOffer, #justClick {
-        font-size: 24px;
+      #getOffer {
+        font-size: 14px; /* Уменьшенный размер шрифта для мобильных */
+      }
+
+      #justClick {
+        font-size: 18px;
       }
 
       #startButton {
