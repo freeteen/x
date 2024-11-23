@@ -1,82 +1,223 @@
-<script>
-  // Переводы для Tier 1, 2 и 3 языков
-  const translations = {
-    en: {
-      takeTest: "TAKE A SHORT TEST",
-      instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
-      getOffer: "The video will start automatically on the “Thank You!” page, just click GET OFFER.",
-      startButton: "START TEST"
-    },
-    ru: {
-      takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
-      instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
-      getOffer: "Видео начнётся автоматически на странице «Спасибо!», просто нажми ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ.",
-      startButton: "НАЧАТЬ ТЕСТ"
-    },
-    es: {
-      takeTest: "REALIZA UNA PRUEBA CORTA",
-      instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
-      getOffer: "El video se iniciará automáticamente en la página de “Gracias!”, solo haz clic en OBTENER OFERTA.",
-      startButton: "COMENZAR PRUEBA"
-    },
-    fr: {
-      takeTest: "FAITES UN COURT TEST",
-      instructions: "LA VIDÉO SERA LANCÉE APRÈS LE TEST.",
-      getOffer: "La vidéo commencera automatiquement sur la page « Merci ! », cliquez simplement sur OBTENIR L'OFFRE.",
-      startButton: "COMMENCER LE TEST"
-    },
-    de: {
-      takeTest: "MACHEN SIE EINEN KURZEN TEST",
-      instructions: "DAS VIDEO STARTET NACH DEM TEST.",
-      getOffer: "Das Video startet automatisch auf der „Danke!“-Seite. Klicken Sie einfach auf ANGEBOT ERHALTEN.",
-      startButton: "TEST STARTEN"
-    },
-    it: {
-      takeTest: "FAI UN BREVE TEST",
-      instructions: "IL VIDEO PARTIRÀ DOPO IL TEST.",
-      getOffer: "Il video inizierà automaticamente nella pagina “Grazie!”, clicca semplicemente su OTTIENI OFFERTA.",
-      startButton: "INIZIA IL TEST"
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>freeteens</title>
+  <meta name="generator" content="WYSIWYG Web Builder 18 - https://www.wysiwygwebbuilder.com">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
     }
-    // Добавить дополнительные языки при необходимости
-  };
 
-  // Установка языка на основе языка браузера пользователя
-  function setLanguage() {
-    const userLang = navigator.language.slice(0, 2); // Извлекаем первые две буквы языка браузера
-    const lang = translations[userLang] ? userLang : 'en'; // Используем язык пользователя или английский как дефолт
-
-    // Применяем переводы
-    document.getElementById('takeTest').textContent = translations[lang].takeTest;
-    document.getElementById('instructions').textContent = translations[lang].instructions;
-    document.getElementById('getOffer').textContent = translations[lang].getOffer;
-    document.getElementById('startButton').textContent = translations[lang].startButton;
-  }
-
-  // Показать инструкцию после клика
-  function showInstructions() {
-    document.getElementById('instructions').style.display = 'block';
-  }
-
-  // Перенаправление на разные ссылки в зависимости от устройства
-  function redirectToDeviceLink() {
-    const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
-    const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
-    const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
-
-    if (/Android/i.test(navigator.userAgent)) {
-      window.open(androidLink, "_blank");
-    } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      window.open(iosLink, "_blank");
-    } else {
-      window.open(desktopLink, "_blank");
+    #container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
     }
-  }
 
-  // Инициализация при загрузке страницы
-  window.onload = function () {
-    setLanguage(); // Установить язык интерфейса
-    document.getElementById('Image2').onclick = redirectToDeviceLink;
-    document.getElementById('Image3').onclick = showInstructions;
-    document.getElementById('startButton').onclick = redirectToDeviceLink;
-  };
-</script>
+    #takeTest {
+      color: yellow;
+      font-size: 24px;
+      margin: 20px 0;
+    }
+
+    #instructions {
+      color: red;
+      font-size: 20px;
+      margin: 10px 0;
+      display: none;
+    }
+
+    #getOffer {
+      color: yellow;
+      font-size: 18px;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+
+    #startButton {
+      background-color: yellow;
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #startButton:hover {
+      background-color: orange;
+    }
+
+    /* Увеличенный текст для мобильной версии */
+    @media (max-width: 600px) {
+      #takeTest {
+        font-size: 24px;
+      }
+
+      #instructions {
+        font-size: 16px;
+      }
+
+      #getOffer {
+        font-size: 20px;
+      }
+
+      #startButton {
+        font-size: 16px;
+      }
+    }
+  </style>
+  <script>
+    // Переводы для различных языков
+    const translations = {
+      // Tier 1: Основные языки
+      en: {
+        takeTest: "TAKE A SHORT TEST",
+        instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
+        getOffer: "The video will start automatically on the “Thank You!” page, just click GET OFFER.",
+        startButton: "START TEST"
+      },
+      ru: {
+        takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
+        instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
+        getOffer: "Видео начнётся автоматически на странице «Спасибо!», просто нажмите ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ.",
+        startButton: "НАЧНАТЬ ТЕСТ"
+      },
+      es: {
+        takeTest: "REALIZA UNA PRUEBA CORTA",
+        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
+        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”, solo haz clic en OBTENER OFERTA.",
+        startButton: "COMENZAR PRUEBA"
+      },
+      fr: {
+        takeTest: "FAITES UN TEST COURT",
+        instructions: "LA VIDÉO SERA LANCÉE APRÈS LE TEST.",
+        getOffer: "La vidéo démarrera automatiquement sur la page « Merci ! », il suffit de cliquer sur OBTENIR L'OFFRE.",
+        startButton: "DÉMARRER LE TEST"
+      },
+      de: {
+        takeTest: "MACHEN SIE EINEN KURZEN TEST",
+        instructions: "DAS VIDEO WIRD NACH DEM TEST ABGESPIELT.",
+        getOffer: "Das Video startet automatisch auf der Seite „Danke!“, klicken Sie einfach auf ANGEBOT ABHOLEN.",
+        startButton: "TEST STARTEN"
+      },
+      it: {
+        takeTest: "FAI UN TEST BREVE",
+        instructions: "IL VIDEO VERRÀ RIPRODOTTO DOPO IL TEST.",
+        getOffer: "Il video partirà automaticamente sulla pagina “Grazie!”, basta fare clic su OTTIENI L'OFFERTA.",
+        startButton: "INIZIA IL TEST"
+      },
+      pt: {
+        takeTest: "FAÇA UM TESTE RÁPIDO",
+        instructions: "O VÍDEO SERÁ EXIBIDO APÓS O TESTE.",
+        getOffer: "O vídeo começará automaticamente na página “Obrigado!”, basta clicar em OBTER OFERTA.",
+        startButton: "INICIAR TESTE"
+      },
+      tr: {
+        takeTest: "KISA BİR TEST YAPIN",
+        instructions: "VİDEO TESTTEN SONRA OYNATILACAKTIR.",
+        getOffer: "Video, “Teşekkürler!” sayfasında otomatik olarak başlayacak, sadece TEKLİFİ AL butonuna tıklayın.",
+        startButton: "TESTİ BAŞLAT"
+      },
+      ar: {
+        takeTest: "أخذ اختبار قصير",
+        instructions: "سيتم تشغيل الفيديو بعد الاختبار.",
+        getOffer: "سيبدأ الفيديو تلقائيًا على صفحة \"شكرًا!\"، فقط اضغط على احصل على العرض.",
+        startButton: "ابدأ الاختبار"
+      },
+      ja: {
+        takeTest: "短いテストを受ける",
+        instructions: "テスト後にビデオが再生されます。",
+        getOffer: "ビデオは「ありがとう！」ページで自動的に再生されます、GET OFFERをクリックしてください。",
+        startButton: "テストを開始"
+      },
+      ko: {
+        takeTest: "짧은 테스트를 진행하세요",
+        instructions: "테스트 후에 비디오가 재생됩니다.",
+        getOffer: "비디오는 “감사합니다!” 페이지에서 자동으로 시작됩니다. GET OFFER를 클릭하세요.",
+        startButton: "테스트 시작"
+      },
+      zh: {
+        takeTest: "进行短小测试",
+        instructions: "测试后视频将播放。",
+        getOffer: "视频将在“谢谢！”页面自动开始，点击GET OFFER即可。",
+        startButton: "开始测试"
+      }
+    };
+
+    // Установка языка
+    function setLanguage() {
+      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
+      const lang = translations[userLang] ? userLang : 'en'; // Если язык не найден, используем английский
+
+      // Установка переведенных значений для текста и кнопок
+      document.getElementById('takeTest').textContent = translations[lang].takeTest;
+      document.getElementById('instructions').textContent = translations[lang].instructions;
+      document.getElementById('getOffer').textContent = translations[lang].getOffer;
+      document.getElementById('startButton').textContent = translations[lang].startButton;
+    }
+
+    // Функция для показа текста инструкций
+    function showInstructions() {
+      const instructionsElement = document.getElementById('instructions');
+      instructionsElement.style.display = 'block'; // Показываем текст
+    }
+
+    // Функция для редиректа по типу устройства
+    function redirectToDeviceLink() {
+      const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const desktopLink = "https://tichairg.com/link?z=6486346&var={SOURCE_ID}&ymid={CLICK_ID}";
+
+      if (/android/i.test(navigator.userAgent)) {
+        window.location.href = androidLink;
+      } else if (/iphone|ipod/i.test(navigator.userAgent)) {
+        window.location.href = iosLink;
+      } else {
+        window.location.href = desktopLink;
+      }
+    }
+
+    window.onload = function() {
+      setLanguage();
+      document.getElementById('Image3').onclick = showInstructions; // Клик на изображение для показа текста
+    };
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="wb_Text1">
+      <p id="takeTest">TAKE A SHORT TEST</p>
+    </div>
+    <div>
+      <img src="images/test2.png" id="Image2" alt="Test Image">
+    </div>
+    <div>
+      <img src="images/xvideo.png" id="Image3" alt="Video Image">
+    </div>
+    <div>
+      <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
+    </div>
+    <div>
+      <p id="getOffer">The video will start automatically on the “Thank You!” page, just click GET OFFER.</p>
+    </div>
+    <div>
+      <button id="startButton" onclick="redirectToDeviceLink()">START TEST</button>
+    </div>
+  </div>
+</body>
+</html>
